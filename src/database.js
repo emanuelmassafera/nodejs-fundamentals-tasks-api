@@ -33,6 +33,12 @@ export class Database {
     return data
   }
 
+  selectById(table, id) {
+    const data = this.#database[table].find(row => row.id === id)
+
+    return data
+  }
+
   insert(table, data) {
     if (Array.isArray(this.#database[table])) {
       this.#database[table].push(data)
@@ -43,5 +49,15 @@ export class Database {
     this.#persist()
 
     return data
+  }
+
+  update(table, id, data) {
+    const rowIndex = this.#database[table].findIndex(row => row.id === id)
+
+    if (rowIndex > -1) {
+      const previousData = this.#database[table][rowIndex]
+      this.#database[table][rowIndex] = { ...previousData, ...data }
+      this.#persist()
+    }
   }
 }

@@ -45,4 +45,29 @@ export const routes = [
       return res.writeHead(201).end(JSON.stringify(createdTask))
     }
   },
+  {
+    method: 'PUT',
+    path: buildRoutePath('/tasks/:id'),
+    handler: (req, res) => {
+      const { id } = req.params
+      const { title, description } = req.body
+
+      if (!title || !description) {
+        return res.writeHead(400).end(JSON.stringify({ error: 'The title and description fields are mandatory' }))
+      }
+
+      const task = database.selectById('tasks', id)
+      if (!task) {
+        return res.writeHead(404).end(JSON.stringify({ error: 'The resource with the provided id was not found' }))
+      }
+
+      database.update('tasks', id, {
+        title: title,
+        description: description,
+        updated_at: new Date()
+      })
+
+      return res.writeHead(204).end()
+    }
+  },
 ]
