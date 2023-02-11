@@ -102,4 +102,30 @@ export const routes = [
       return res.writeHead(204).end()
     }
   },
+  {
+    method: 'PATCH',
+    path: buildRoutePath('/tasks/:id/complete'),
+    handler: (req, res) => {
+      const { id } = req.params
+
+      const task = database.selectById('tasks', id)
+      if (!task) {
+        return res.writeHead(404).end(JSON.stringify({ error: 'The resource with the provided id was not found' }))
+      }
+
+      const currentDate = new Date()
+      const updatedFields = {
+        updated_at: currentDate
+      }
+      if (!task.completed_at) {
+        updatedFields['completed_at'] = currentDate
+      } else {
+        updatedFields['completed_at'] = null
+      }
+
+      const updatedTask = database.update('tasks', id, updatedFields)
+
+      return res.writeHead(200).end(JSON.stringify(updatedTask))
+    }
+  }
 ]
