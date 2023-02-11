@@ -56,8 +56,13 @@ export class Database {
 
     if (rowIndex > -1) {
       const previousData = this.#database[table][rowIndex]
-      this.#database[table][rowIndex] = { ...previousData, ...data }
+      const updatedData = { ...previousData, ...data }
+
+      this.#database[table][rowIndex] = updatedData
+
       this.#persist()
+
+      return updatedData
     }
   }
 
