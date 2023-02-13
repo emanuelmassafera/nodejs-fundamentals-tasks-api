@@ -46,6 +46,8 @@ npm run dev
 # The server will start at port:3333
 ```
 
+---
+
 ### Author
 
 <img style="border-radius: 50%;" src="https://avatars1.githubusercontent.com/u/65625500?s=460&u=eb9e300de61698fc8531949a451ce2f0e9da46f9&v=4" width="100px;" alt=""/>
