@@ -35,13 +35,13 @@ Before starting, you will need to have the following tools installed on your mac
 $ git clone https://github.com/emanuelmassafera/nodejs-fundamentals-tasks-api.git
 
 # Access the project folder via the terminal/cmd
-$ cd nodejs-fundamentals-tasks-api.git
+$ cd nodejs-fundamentals-tasks-api
 
 # Install dependencies
 $ npm install
 
 # Run the server
-npm run dev
+$ npm run dev
 
 # The server will start at port:3333
 ```
